@@ -1,7 +1,7 @@
 const api = require("node-fetch");
 
-let coba = api("https://jsonplaceholder.typicode.com/users");
-coba
+let getData = api("https://jsonplaceholder.typicode.com/userss");
+getData
   .then((res) => {
     if (res.status >= 400) {
       throw new Error("Bad response from server");

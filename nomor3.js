@@ -1,39 +1,21 @@
-// 1
-// const tes = new Promise((resolve, reject) => {
-//   let kondisi = true;
-//   setTimeout(() => {
-//     const name = [
-//       "Abigail",
-//       "Alexandra",
-//       "Amanda",
-//       "Angela",
-//       "Bella",
-//       "Carol",
-//       "Caroline",
-//       "Carolyn",
-//       "Diana",
-//       "Elizabeth",
-//       "Ella",
-//       "Faith",
-//       "Olivia",
-//     ];
-//     if (kondisi) {
-//       resolve(name);
-//     } else {
-//       reject(new Error("Sorry data not found"));
-//     }
-//   }, 5000);
-// });
+// // 1
+let cekKelulusan = (n) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      try {
+        if (n >= 70 && n <= 100) throw resolve("Selamat  Anda Lulus Ujian!");
+        if (n >= 0 && n <= 69) throw reject("Maaf Anda Tidak Lulus Ujian!");
+        if (n > 100 || n < 0) throw reject("Nilai salah");
+      } catch (error) {
+        return error;
+      }
+    }, 1000);
+  });
+};
 
-// tes
-//   .then((result) => {
-//     result.map((item) => {
-//       console.log(`Name : ${item}`);
-//     });
-//   })
-//   .catch((error) => {
-//     console.log(error.message);
-//   });
+cekKelulusan(80)
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error));
 
 // 2
 

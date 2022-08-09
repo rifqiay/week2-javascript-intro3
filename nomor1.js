@@ -10,48 +10,35 @@ const cekHariKerja = (day) => {
       } else {
         reject(new Error("Hari ini bukan hari kerja"));
       }
-    }, 100);
+    }, 1000);
   });
 };
 
-switch (new Date().getDay()) {
-  case 0:
-    day = "minggu";
-    break;
-  case 1:
-    day = "senin";
-    break;
-  case 2:
-    day = "selasa";
-    break;
-  case 3:
-    day = "rabu";
-    break;
-  case 4:
-    day = "kamis";
-    break;
-  case 5:
-    day = "jumat";
-    break;
-  case 6:
-    day = "sabtu";
-    break;
+//then(), catch()
+//then untuk menangkap value promise jika kondisi resolve atau sukses
+// catch untuk menangkap value promise jika kondisi reject atau gagal
+function then(day) {
+  cekHariKerja(day)
+    .then((result) => {
+      console.log(`${result} adalah hari kerja`);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
 }
+then("minggu");
+then("senin");
 
-cekHariKerja(day)
-  .then((result) => {
+//try catch
+// try untuk menyisipkan code javascript yang mungkin terjadi error
+//catch menangkap error yang terjadi di blok try
+async function cek(day) {
+  try {
+    const result = await cekHariKerja(day);
     console.log(`${result} adalah hari kerja`);
-  })
-  .catch((error) => {
+  } catch (error) {
     console.log(error.message);
-  });
-
-// async function coba() {
-//   try {
-//     const result = await cekHariKerja(day);
-//     console.log(`${result} adalah hari kerja`);
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// }
-// coba();
+  }
+}
+cek("minggu");
+cek("senin");

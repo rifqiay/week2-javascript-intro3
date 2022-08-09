@@ -1,6 +1,6 @@
 const getMonth = (callback) => {
   setTimeout(() => {
-    let error = true;
+    let error = false;
     let month = [
       "January",
       "February",
@@ -20,20 +20,25 @@ const getMonth = (callback) => {
     } else {
       callback(new Error("Sorry Data Not Found"), []);
     }
-  }, 100);
+  }, 4000);
 };
 
 function tampil(cek, month) {
-  try {
-    if (cek) throw cek;
-    if (month) {
-      month.map((item) => {
-        console.log(item);
-      });
+  return new Promise((resolve, reject) => {
+    if (cek == null) {
+      resolve(month);
+    } else {
+      reject(cek);
     }
-  } catch (error) {
-    console.log(error.message);
-  }
+  })
+    .then((result) => {
+      result.map((e) => {
+        console.log(e);
+      });
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
 }
 
 getMonth(tampil);
